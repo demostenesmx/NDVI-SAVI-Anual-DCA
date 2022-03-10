@@ -24,10 +24,10 @@ Resultados de Histogramas de la distribución de los valores anuales de los IVM 
 
 4. ![alt text](https://github.com/demostenesmx/NDVI-SAVI-Anual-DCA/blob/main/SAVI_ZS_Anual.png)
 
-### Capas raster a exportar. 
+### Capas raster anuales a exportar. 
 Las capas raster de exportación se ubicaran dentro de la pestaña Tasks, para su descarga en google drive y posteriormente ser descargadas a la PC personal para su manipulación. Este código fue elaborado mendiante la plataforma GEE. Se puede acceder a través del siguiente link: https://code.earthengine.google.com/?accept_repo=users/veronica78mere/DCA_Tesis
 
-![alt text](https://github.com/demostenesmx/NDVI-SAVI_DCA/blob/main/Raster_Exportación.JPG)
+![alt text](https://github.com/demostenesmx/NDVI-SAVI-Anual-DCA/blob/main/Raster_Anuales_Descarga.JPG)
 
 La manipulación de la información contenida en los rasaters puede realizarse, a traves, del sistema de información geografica de su preferencia. Para el presente caso de estudio se utilizó el software de acceso libre QGIS.
 
