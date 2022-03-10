@@ -20,7 +20,7 @@ Resultados de Histogramas de la distribución de los valores anuales de los IVM 
 
 2. ![alt text](https://github.com/demostenesmx/NDVI-SAVI-Anual-DCA/blob/main/SAVI_ZN_Anual.png)
 
-3. ![alt text](https://github.com/demostenesmx/NDVI-SAVI_DCA/blob/main/H-SAVI-ZN_02.png)
+3. ![alt text](https://github.com/demostenesmx/NDVI-SAVI-Anual-DCA/blob/main/NDVI_ZS_Anual.png)
 
 4. ![alt text](https://github.com/demostenesmx/NDVI-SAVI_DCA/blob/main/H-SAVI-ZS_02.png)
 
