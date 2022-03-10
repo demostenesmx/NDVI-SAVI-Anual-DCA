@@ -2,10 +2,10 @@
 //=====================en un periodo de 10 años dentro de la Reserva de la Biosfera de Sian Ka´an (RBSK), Quintana Roo, México.====================================/
 //=====================(Elaboración y modificación estructural de codigos por MMZC. Eloy Gayosso Soto).===========================================================/
 
-//Esta obra se ecuentra bajo los términos de la licencia GNU General Public License v3.0.======================================================/
-// Para obtener una copia, consulte https://choosealicense.com/licenses/gpl-3.0/ =============================================================/
+//=====================Esta obra se ecuentra bajo los términos de la licencia GNU General Public License v3.0.======================================================/
+//=====================Para obtener una copia, consulte https://choosealicense.com/licenses/gpl-3.0/ =============================================================/
 
-//https://courses.spatialthoughts.com/end-to-end-gee.html
+//===============================https://courses.spatialthoughts.com/end-to-end-gee.html.=======================================================================/
 
 //===================================1.Periodo de estudio 2011-2020 (10 años).================================================================/
 
@@ -17,22 +17,27 @@ var ZN = ee.FeatureCollection ('users/veronica78mere/ZN');
 var ZS = ee.FeatureCollection ('users/veronica78mere/ZS');
 
 //=========================2.1. Determinando la superficie de cada zona de estudio.====================================/
+
 var ZNarea= ZN.geometry().area().divide(10000);
 var ZSarea= ZS.geometry().area().divide(10000);
 
 //======================================2.2. Imprimiendo superficies áreas de estudio.===============================/
+
 print ('Superficie ZN ha', ZNarea);
 print ('Superficie ZS ha', ZSarea);
+
 //======================================2.3.Unión de zonas de estudio.============================================================================/
+
 var zonas = ee.FeatureCollection (ZN.merge(ZS));
 
 ////=======================================3.Código de la librería oficial de GEE para el enmascaramiento de nubes y sombras.=======================/
 //------------------------------------------------------------------------------------------------------------------------------------------------/
-//Fuente de estructura de codigo de enmascaameinto de nube para este catalago:
-//https://developers.google.com/earth-engine/datasets/catalog/LANDSAT_LE07_C01_T1_SR?hl=en
+//=================================Fuente de estructura de codigo de enmascaameinto de nube para este catalago: ==================================/
+//================================https://developers.google.com/earth-engine/datasets/catalog/LANDSAT_LE07_C01_T1_SR?hl=en ======================/
 //----------------------------------------------------------------------------------------------------------------------------------------------/
 
-//Se crea la función cloudMaskL457 para enmascarar nubes, sombras y sombra de nubes, mediante los valores de pixel de la banda QA_PIXEL
+//==Se crea la función cloudMaskL457 para enmascarar nubes, sombras y sombra de nubes, mediante los valores de pixel de la banda QA_PIXEL
+
 var cloudMaskC2L7 = function(image) {
   var cloud = (1 << 3)
   var cloudconfidence = (1 << 9)
@@ -59,7 +64,8 @@ return image.select(
 }*/
 
 //===========================4.Para datos anuales.===================================================================================/
- function scale02(image) {
+ 
+function scale02(image) {
   var opticalbands = image.select('SR_B.').multiply(0.0000275).add(-0.2);
     return image.addBands(opticalbands, null, true);
 }
@@ -67,6 +73,7 @@ return image.select(
 //=====================================5.Periodos anuales para estimación de Mann-Kendall en R Studio en la vegetación en DC. =====================================================/
 
 //1.=========================================================/
+
 var T1 = ee.ImageCollection("LANDSAT/LE07/C02/T1_L2") 
   .filterDate ('2011-01-01' ,'2011-12-31')  
   .map (cloudMaskC2L7)
@@ -75,6 +82,7 @@ var T1 = ee.ImageCollection("LANDSAT/LE07/C02/T1_L2")
   .clip(zonas);
 
 //2.==========================================================/ 
+
 var T2 = ee.ImageCollection("LANDSAT/LE07/C02/T1_L2") 
   .filterDate ('2012-01-01' ,'2012-12-31')  
   .map (cloudMaskC2L7)
@@ -83,6 +91,7 @@ var T2 = ee.ImageCollection("LANDSAT/LE07/C02/T1_L2")
   .clip(zonas);
 
 //3.===========================================================/
+
 var T3 = ee.ImageCollection("LANDSAT/LE07/C02/T1_L2") 
   .filterDate ('2013-01-01' ,'2013-12-31')  
   .map (cloudMaskC2L7)
@@ -91,6 +100,7 @@ var T3 = ee.ImageCollection("LANDSAT/LE07/C02/T1_L2")
   .clip(zonas);
 
 //4.=============================================================/
+
 var T4 = ee.ImageCollection("LANDSAT/LE07/C02/T1_L2") 
   .filterDate ('2014-01-01' ,'2014-12-31') 
   .map (cloudMaskC2L7)
@@ -99,6 +109,7 @@ var T4 = ee.ImageCollection("LANDSAT/LE07/C02/T1_L2")
  .clip(zonas);
 
 //5.================================================================/
+
 var T5 = ee.ImageCollection("LANDSAT/LE07/C02/T1_L2") 
   .filterDate ('2015-01-01' ,'2015-12-31') 
   .map (cloudMaskC2L7)
@@ -125,7 +136,8 @@ var T6 = ee.ImageCollection("LANDSAT/LE07/C02/T1_L2")
   .clip(zonas);
 
 //8. ================================================================/  
-  var T8 = ee.ImageCollection("LANDSAT/LE07/C02/T1_L2") 
+ 
+var T8 = ee.ImageCollection("LANDSAT/LE07/C02/T1_L2") 
   .filterDate ('2018-01-01', '2018-12-31') 
   .map (cloudMaskC2L7)
   .map(scale02)
@@ -133,7 +145,8 @@ var T6 = ee.ImageCollection("LANDSAT/LE07/C02/T1_L2")
   .clip(zonas);
 
 //9. ================================================================/  
-  var T9 = ee.ImageCollection("LANDSAT/LE07/C02/T1_L2") 
+ 
+var T9 = ee.ImageCollection("LANDSAT/LE07/C02/T1_L2") 
   .filterDate ('2019-01-01', '2019-12-31') 
   .map (cloudMaskC2L7)
   .map(scale02)
@@ -141,7 +154,8 @@ var T6 = ee.ImageCollection("LANDSAT/LE07/C02/T1_L2")
   .clip(zonas);
 
 //10. ================================================================/  
-  var T10 = ee.ImageCollection("LANDSAT/LE07/C02/T1_L2") 
+  
+var T10 = ee.ImageCollection("LANDSAT/LE07/C02/T1_L2") 
   .filterDate ('2020-01-01', '2020-12-31') 
   .map (cloudMaskC2L7)
   .map(scale02)
@@ -303,6 +317,7 @@ var results_02 =SAVImultitemporal.select('SAVI.*').reduceRegion({reducer: reduce
 print ('Estadisticos_SAVI_ZN', results_02);
 
 //4.==========================================================/
+
 var results_03 =NDVImultitemporal.select('NDVI.*').reduceRegion({reducer: reducers,
                                 geometry: ZS,
                                 scale: 30,
@@ -311,6 +326,7 @@ var results_03 =NDVImultitemporal.select('NDVI.*').reduceRegion({reducer: reduce
 print ('Estadisticos_NDVI_ZS', results_03);
 
 //5.===========================================================/
+
 var results_04 =SAVImultitemporal.select('SAVI.*').reduceRegion({reducer: reducers,
                                 geometry: ZS,
                                 scale: 30,
@@ -686,11 +702,6 @@ var rgb_vis = {
   max: 0.2,
 }; 
 
-var veg_vis = {
-  bands: ['SR_B4_median', 'SR_B3_median', 'SR_B2_median'],
-  min: 0.0,
-  max: 0.2,
-}; 
 //===== ==========================15. Añadir capas de categorízación de los valores de NDVI por año,=========================================================/
 //=================================adaptado para este estudio.===================================================================/
 
@@ -704,8 +715,6 @@ Map.addLayer (SAVI1,{max: 1.0, min: 0, palette: palette}, 'SAVI_2011');
 
 //====================================15.2.Añadir al mapa la representación de la mediana de la imagen y perimetro del área de estudio.==========================/
 
-Map.addLayer (T6.clip(Sian_Pol), veg_vis, 'VEG (mediana)');
-Map.addLayer (Sian_Per,{color:'yellow'}, 'RBSK');
 Map.addLayer (ZN, {color:'blue'}, 'ZN');
 Map.addLayer (ZS, {color:'cyan'}, 'ZS');
 
