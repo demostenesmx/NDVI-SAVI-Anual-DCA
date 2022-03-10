@@ -14,11 +14,11 @@ El repostirorio se elaboró de acuerdo a los lineamientos de la [**licencia GNU 
 
 Estimaciones.
 
-Resultados de Histogramas de la distribución de los valores bianuales de los IVM estimados por zona (ZN-ZS) para el periodo 2011-2020. 
+Resultados de Histogramas de la distribución de los valores anuales de los IVM estimados por zona (ZN-ZS) para el periodo 2011-2020. 
 
 1. ![alt text](https://github.com/demostenesmx/NDVI-SAVI-Anual-DCA/blob/main/NDVI_ZN_Anual.png)
 
-2. ![alt text](https://github.com/demostenesmx/NDVI-SAVI_DCA/blob/main/H-NDVI-ZS.png)
+2. ![alt text](https://github.com/demostenesmx/NDVI-SAVI-Anual-DCA/blob/main/SAVI_ZN_Anual.png)
 
 3. ![alt text](https://github.com/demostenesmx/NDVI-SAVI_DCA/blob/main/H-SAVI-ZN_02.png)
 
